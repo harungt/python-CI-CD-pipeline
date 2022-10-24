@@ -1,10 +1,11 @@
 import sys 
 
-from pylint import lint  
+from pylint.lint import Run
+
 
 THRESHOLD = 9  
 
-run = lint.Run(["hello.py"], do_exit=False) 
+run = Run(["hello.py"], do_exit=False)
 
 score = run.linter.stats["global_note"]  
 
