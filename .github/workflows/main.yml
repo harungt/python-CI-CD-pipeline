@@ -8,7 +8,6 @@ on:
 
     - 'hello.py' 
 
-    - 'lint.py' 
  
 
 jobs: 
@@ -37,9 +36,4 @@ jobs:
 
         pip install pylint 
 
-    - name: Lint with pylint 
 
-      run: | 
-
-
-        python lint.py 
