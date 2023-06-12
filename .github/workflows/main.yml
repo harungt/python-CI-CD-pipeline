@@ -2,36 +2,33 @@ on:
 
   push: 
 
-    branches: [ main ] 
-
-    paths: 
-
-    - 'hello.py' 
-
+    branches:
+    - main
  
-
+ 
 jobs: 
-
-  build: 
-
+  updateAuthor: 
     runs-on: ubuntu-latest 
 
     steps: 
+    - name: checking out code
+      uses: actions/checkout@v2 
 
-    - uses: actions/checkout@v2 
+    - name: extract git commit data
+      uses: rlespinasse/git-commit-data-action@v1.x
+      
+    - name: Update author information
+      run: echo ${( env.GIT_COMMIT_AUTHOR_NAME )} > AUTHOR
 
-    - name: Set up Python 3.8 
-
-      uses: actions/setup-python@v2 
-
-      with: 
-
-        python-version: 3.8 
-
-    - name: Install dependencies 
-
-      run: | 
-
-        python -m pip install --upgrade pip 
-
-        pip install pylint
+    - name: Raise PR
+      uses: peter-evans/create-pull-request@v3
+      with:
+        branch: "auto-pr-branch"
+        base: main
+        title: "demo for auto pr"
+        committer: ${( env.GIT_COMMIT_AUTHOR_NAME )} <${( env.GIT_COMMIT_AUTHOR_EMAIL )}">
+        author: ${( env.GIT_COMMIT_AUTHOR_NAME )} <${( env.GIT_COMMIT_AUTHOR_EMAIL )}">
+        body:
+           This is to show automatic PR creation
+        token: ${( secrets.GITHUB_TOKEN )}
+        delete-branch: true
