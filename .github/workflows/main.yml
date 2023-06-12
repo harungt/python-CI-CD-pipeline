@@ -1,10 +1,6 @@
 on: 
   create:
     branches: ['staging']
-  push: 
-    branches: ['staging']
- 
- 
 jobs: 
   pull-request:
     name: Open PR to main
