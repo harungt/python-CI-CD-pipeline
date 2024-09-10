@@ -3,7 +3,6 @@ on:
     branches:
     - main
  
- 
 jobs: 
   updateAuthor: 
     runs-on: ubuntu-latest 
@@ -16,7 +15,7 @@ jobs:
       uses: rlespinasse/git-commit-data-action@v1.x
       
     - name: Update author information
-      run: echo ${( env.GIT_COMMIT_AUTHOR_NAME )} > CODEOWNERS
+      run: echo ${ env.GIT_COMMIT_AUTHOR_NAME } > CODEOWNERS
 
     - name: Raise PR
       uses: peter-evans/create-pull-request@v3
@@ -24,9 +23,21 @@ jobs:
         branch: "auto-pr-branch"
         base: main
         title: "demo for auto pr"
-        committer: ${( env.GIT_COMMIT_AUTHOR_NAME )} <${( env.GIT_COMMIT_AUTHOR_EMAIL )}">
-        author: ${( env.GIT_COMMIT_AUTHOR_NAME )} <${( env.GIT_COMMIT_AUTHOR_EMAIL )}">
-        body:
-           This is to show automatic PR creation for python
-        token: ${( secrets.GITHUB_TOKEN )}
+        committer: "${ env.GIT_COMMIT_AUTHOR_NAME } <${ env.GIT_COMMIT_AUTHOR_EMAIL }>"
+        author: "${ env.GIT_COMMIT_AUTHOR_NAME } <${ env.GIT_COMMIT_AUTHOR_EMAIL }>"
+        body: "This is to show automatic PR creation for python"
+        token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
+    
+    # Auto-assign the PR to a specific user or team
+    - name: Assign PR
+      uses: kentaro-m/auto-assign-action@v1
+      with:
+        assignees: |
+          @atiar-gt
+          @mominurGT
+        reviewers: |
+          @kawser-gt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
