@@ -29,15 +29,14 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
     
-    # Auto-assign the PR to a specific user or team
+    # Auto-assign the PR to a specific user or team using another action
     - name: Assign PR
-      uses: kentaro-m/auto-assign-action@v1
+      uses: actions-ecosystem/action-assign@v1
       with:
         assignees: |
-          @atiar-gt
-          @mominurGT
+          atiar-gt
+          mominurGT
         reviewers: |
-          @kawser-gt
+          kawser-gt
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
