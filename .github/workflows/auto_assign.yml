@@ -33,9 +33,9 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
     
-    # Auto-assign the PR to a specific user or team using kentaro-m/auto-assign-action
+    # Auto-assign the PR to a specific user or team using kentaro-m/auto-assign
     - name: Auto-assign PR
-      uses: kentaro-m/auto-assign@v1.2.0
+      uses: kentaro-m/auto-assign@v1
       with:
         assignees: |
           atiar-gt
