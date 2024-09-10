@@ -5,7 +5,11 @@ on:
  
 jobs: 
   updateAuthor: 
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps: 
     - name: checking out code
@@ -29,9 +33,9 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
     
-    # Auto-assign the PR to a specific user or team using the correct action
+    # Auto-assign the PR to a specific user or team using kentaro-m/auto-assign-action
     - name: Auto-assign PR
-      uses: teamscale/auto-assign-action@v1.1.0
+      uses: kentaro-m/auto-assign@v1.2.0
       with:
         assignees: |
           atiar-gt
