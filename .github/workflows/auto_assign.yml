@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - main
+      - auto-pr-branch
 
 jobs: 
   updateAuthor: 
@@ -37,6 +38,11 @@ jobs:
         body: "This is to show automatic PR creation for python"
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
+    - name: Debug Environment
+      run: |
+        echo "GITHUB_EVENT_NAME=${{ github.event_name }}"
+        echo "GITHUB_EVENT_PATH=${{ github.event_path }}"
+        cat ${{ github.event_path }}
 
   autoAssign:
     if: github.event_name == 'pull_request'  # Ensure this runs only on PR
