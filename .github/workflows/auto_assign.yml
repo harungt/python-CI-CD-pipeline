@@ -35,7 +35,7 @@ jobs:
 
     # Auto-assign PR using kentaro-m/auto-assign
     - name: Auto-assign PR
-      uses: kentaro-m/auto-assign-action@v1.2.0
+      uses: kentaro-m/auto-assign@v1.0.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         configuration-path: .github/auto_assign.yml
