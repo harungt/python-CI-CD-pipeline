@@ -1,0 +1,12 @@
+# .github/auto_assign.yml
+
+# Automatically assign PRs
+add-assignees: true
+assignees:
+  - atiar-gt
+  - mominurGT
+
+# Automatically request reviewers for PRs
+add-reviewers: true
+reviewers:
+  - kawser-gt
