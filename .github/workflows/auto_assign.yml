@@ -1,5 +1,9 @@
+# Trigger on both push to main branch and pull request
 on: 
   push: 
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -33,9 +37,16 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
 
-    # Auto-assign PR using kentaro-m/auto-assign-action
+  autoAssign:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
     - name: Auto-assign PR
-      uses: kentaro-m/auto-assign-action@v1.2.0  # Updated to the correct version
+      uses: kentaro-m/auto-assign-action@v1.2.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         configuration-path: .github/auto_assign.yml
