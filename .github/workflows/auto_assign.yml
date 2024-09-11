@@ -37,12 +37,5 @@ jobs:
     - name: Auto-assign PR
       uses: kentaro-m/auto-assign-action@v1.2.0
       with:
-        add-assignees: true
-        assignees: |
-          atiar-gt
-          mominurGT
-        add-reviewers: true
-        reviewers: |
-          kawser-gt
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        configuration-path: .github/auto_assign.yml
