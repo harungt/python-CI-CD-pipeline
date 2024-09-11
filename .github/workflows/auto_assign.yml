@@ -24,7 +24,7 @@ jobs:
       uses: rlespinasse/git-commit-data-action@v1.x
 
     - name: Update author information
-      run: echo "$GIT_COMMIT_AUTHOR_NAME" > CODEOWNERS  # Corrected the syntax
+      run: echo "${{ env.GIT_COMMIT_AUTHOR_NAME }}" > CODEOWNERS  # Correct syntax for GitHub Actions environment variables
 
     - name: Raise PR
       uses: peter-evans/create-pull-request@v3
