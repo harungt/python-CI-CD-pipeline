@@ -9,6 +9,7 @@ on:
 
 jobs: 
   updateAuthor: 
+    if: github.event_name == 'push'  # Ensure this runs only on push
     runs-on: ubuntu-latest
 
     permissions:
@@ -38,6 +39,7 @@ jobs:
         delete-branch: true
 
   autoAssign:
+    if: github.event_name == 'pull_request'  # Ensure this runs only on PR
     runs-on: ubuntu-latest
 
     permissions:
