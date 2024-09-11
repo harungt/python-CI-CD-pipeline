@@ -19,7 +19,7 @@ jobs:
       uses: rlespinasse/git-commit-data-action@v1.x
 
     - name: Update author information
-      run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > CODEOWNERS
+      run: echo "${{ env.GIT_COMMIT_AUTHOR_NAME }}" > CODEOWNERS
 
     - name: Raise PR
       uses: peter-evans/create-pull-request@v3
@@ -32,16 +32,17 @@ jobs:
         body: "This is to show automatic PR creation for python"
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
-    
-    # Auto-assign the PR to a specific user or team using kentaro-m/auto-assign
+
+    # Auto-assign PR using kentaro-m/auto-assign
     - name: Auto-assign PR
-      uses: kentaro-m/auto-assign@v1.0.0
+      uses: kentaro-m/auto-assign-action@v1.2.0
       with:
+        add-assignees: true
         assignees: |
           atiar-gt
           mominurGT
+        add-reviewers: true
         reviewers: |
           kawser-gt
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
