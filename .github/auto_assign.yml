@@ -1,5 +1,3 @@
-# .github/auto_assign.yml
-
 # Automatically assign PRs
 add-assignees: true
 assignees:

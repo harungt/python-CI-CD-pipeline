@@ -1,7 +1,7 @@
 on: 
   push: 
     branches:
-    - main
+      - main
 
 jobs: 
   updateAuthor: 
@@ -33,9 +33,9 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         delete-branch: true
 
-    # Auto-assign PR using kentaro-m/auto-assign
+    # Auto-assign PR using kentaro-m/auto-assign-action
     - name: Auto-assign PR
-      uses: kentaro-m/auto-assign@v1.0.0
+      uses: kentaro-m/auto-assign-action@v1.2.0  # Updated to the correct version
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         configuration-path: .github/auto_assign.yml
